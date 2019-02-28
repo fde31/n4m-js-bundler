@@ -3,7 +3,7 @@ n4m-js-bundler
 
 ## Description
 
-Node For Max helper utility to bundle/wrap code for usage in [js] and [jsui]. This project simply wraps the `max-js-bundler` CLI tool in a way that it is accessible from Max using node.script. This serves mainly as a boilerplate to showcase how something like this can be achieved. So please feel free to take this project and turn into something even more useful for you.
+Node For Max helper utility to bundle/wrap code for usage in [js] and [jsui]. This project simply wraps the [`max-js-bundler`](https://github.com/fde31/max-js-bundler) CLI tool in a way that it is accessible from Max using node.script. This serves mainly as a boilerplate to showcase how something like this can be achieved. So please feel free to take this project and turn into something even more useful for you.
 
 ## Instructions
 
