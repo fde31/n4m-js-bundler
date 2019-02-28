@@ -1,0 +1,31 @@
+{
+  "name": "n4m-js-bundler",
+  "version": "1.0.0",
+  "description": "Node For Max helper utility to bundle/wrap code for usage in [js] and [jsui]",
+  "main": "n4m.js-bundler.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fde31/n4m-js-bundler.git"
+  },
+  "keywords": [
+    "Node For Max",
+    "N4M",
+    "js",
+    "jsui",
+    "Cycling '74",
+    "Max",
+    "Max MSP"
+  ],
+  "author": "Florian Demmer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fde31/n4m-js-bundler/issues"
+  },
+  "homepage": "https://github.com/fde31/n4m-js-bundler#readme",
+  "dependencies": {
+    "max-js-bundler": "^1.0.2"
+  }
+}
