@@ -16,6 +16,6 @@ To use this:
 * Send the filename of the `.js` file you'd like to bundle into the `absolutepath` object
 * It should create a file *next* to the input file on disk with the extension `.build.js`
 
-##
+## License
 
 [MIT](./LICENSE.md)
