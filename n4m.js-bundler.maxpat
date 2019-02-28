@@ -46,7 +46,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 118.5, 21.5, 200.0, 37.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Run this once to make sure everything is installed"
 				}
 
@@ -58,8 +57,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 11.0, 29.0, 98.0, 22.0 ],
-					"text" : "script npm install"
+					"patching_rect" : [ 11.0, 29.0, 76.0, 22.0 ],
+					"text" : "script npm ci"
 				}
 
 			}
