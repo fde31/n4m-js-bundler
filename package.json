@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/fde31/n4m-js-bundler#readme",
   "dependencies": {
-    "max-js-bundler": "^1.0.3"
+    "max-js-bundler": "^1.1.0"
   }
 }
