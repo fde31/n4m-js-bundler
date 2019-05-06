@@ -12,35 +12,28 @@ In order to use this patch start with the following:
 * Download the repository to your computer
 * Open the `n4m.js-bundler-example` Max Patch
 
-Once you opened the patch you will see a basic structure. The left side is used for managing and building our `js` project, while the right side shows the usage of the resulting file. There are a few key components / steps involved. The `node.script` object is used as a portal in order to manage our js project using `npm`. Therefore be aware that the `node.script` points at our `js` file (n4m.js-bundler) but is actually never started. To operate the system follow the following:
+Once you see the patch there are a few initial steps we have go through first:
 
 1. *Installing Dependencies*: Hit the `script npm ci` message to install the project's dependencies, which includes the `max-js-bundler` tool, which is used to build your files.
-2. *Building*: Hit the `script npm run build` message in order to have your project built for usage in `[js]`. This creates a `n4m.js-bundler.build.js` file.
+2. *Starting the Bundler Process*: Hit the `script start` message in order to start the bundler process.
 
-The `[js]` object on the right points to our compatible, built version of the `n4m.js-bundler.js` and you should be able to use/operate it as expected.
+In order to deal with file input the patch provides three buttons:
 
-### Using it for your own project
+* *Select File*: Opens a dialog to select and build the chosen JS file
+* *Rebuild*: Use this to rebuild a JS Filer after it has been chosen via `Select File`
+* *Open File*: Allows you to open the source JS File for editing.
 
-This boilerplate can easily be used in your own project. For that simply copy the directory and make sure to rename the files to your liking. As an example we rename our source `js` file to `my-amazing-code.js`. Notice that we'll have to adopt:
+When building JS files the bundler adds a `.build` prior to the extension of the source file name and places it in the same location. Probably easier to understand with a few examples:
 
-1. Rename `n4m.js-bundler.js` to `my-amazing-code.js`
-2. Open the `package.json` file and make sure to adjust the `build` entry under `scripts`. It should look something like this:
-```json
- "scripts": {
-    "build": "max-js-bundler build ./my-amazing-code.js --output my-amazing-code.build.js --force"
-  }
 ```
-3. Change the first argument of the `node.script` object so that it points to `my-amazing-code.js`
-4. Change the first argument of the `[js]` object to `my-amazing-code.build.js`
+myscript.js => myscript.build.js
+n4m.bundle.me.js => n4m.bundle.me.build.js
+```
 
+The bottom of the patch has a status comment that reports on the current status of the bundler process. After a successful build you can use:
 
-### Using NPM packages
-
-You'd like to use other packages from `npm` in your project? Generally no problem. Make sure to install them as a *dependency* to your project and they should successfully be considered in your bundle. To do so simply send a message to the `node.script` object: `script npm install <pkg_name>`. So for example to install the [`tonal`](https://www.npmjs.com/package/tonal) package you'd send the following message once: `script npm install tonal`.
-
-### Using the built `js` file
-
-You can of course consume the built JavaScript file in all of your patches. Just make sure to include it with your project or have it available in your Search Path.
+* *Open File*: to open the build JS File
+* *Reveal File*: to reveal the build JS File in the File Explorer / Finder
 
 ## Issues & Questions
 

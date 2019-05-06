@@ -1,37 +1,45 @@
-import { EventEmitter } from "events";
+const maxApi = require("max-api");
+const { exec } = require("child_process");
+const { basename, dirname, extname, join } = require("path");
+const { promisify } = require("util");
 
-// Showcasing that you can use an ES6 Class here
-class Logger extends EventEmitter {
+const execAsync = promisify(exec);
 
-	constructor() {
-		super();
+let isBusy = false;
+
+maxApi.addHandler("build", async (filePath, outputPath) => {
+
+	if (isBusy) {
+		await maxApi.outlet("busy");
+		return;
+	}
+	
+	const ext = extname(filePath);
+	if (!ext) {
+		await maxApi.post(`Error while trying to build ${basename(filePath)}:`, maxApi.POST_LEVELS.ERROR);
+		await maxApi.post("Provided File is not a JavaScript file.", maxApi.POST_LEVELS.ERROR);
+		return;
 	}
 
-	log(...args) {
-		post(`${args.join(", ")}\n`);
-		this.emit("log", ...args);
+	if (!outputPath) {
+		outputPath = join(dirname(filePath), `${basename(filePath, ext)}.build${ext}`);
 	}
-}
 
-const logger = new Logger();
+	const bin = join(__dirname, "node_modules", ".bin", "max-js-bundler");
+	isBusy = true;
+	await maxApi.outlet("start");
 
-// We are using the EventEmitter class to showcase access to Node modules
-logger.on("log", (...args) => {
-	post("---\n");
+	try {
+		await execAsync(`"${bin}" build "${filePath}" --output "${outputPath}" --force`);
+	} catch (err) {
+		await maxApi.post(`Error while trying to build ${basename(filePath)}:`, maxApi.POST_LEVELS.ERROR);
+		await maxApi.post(err.message, maxApi.POST_LEVELS.ERROR);
+		await maxApi.outlet("error");
+		return;
+	} finally {
+		isBusy = false;
+	}
+
+	await maxApi.outlet("success", outputPath);
+	await maxApi.outlet("dirpath", `file://${encodeURI(dirname(outputPath))}`);
 });
-
-const bang = number => {
-	logger.log("Received bang");
-};
-
-const msg_int = number => {
-	logger.log(`Received int: ${number}`);
-};
-
-const msg_float = number => {
-	logger.log(`Received float: ${number}`);
-};
-
-const anything = (...args) => {
-	logger.log(`Received anything: ${args}`);
-};
